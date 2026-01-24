@@ -13,7 +13,7 @@ workflow_status:
     name: "Analysis (Discovery)"
     workflows:
       - id: "brainstorm-project"
-        status: "required"
+        status: "completed"
         agent: "analyst"
         command: "/bmad:bmm:workflows:brainstorming"
       - id: "research"
@@ -21,7 +21,7 @@ workflow_status:
         agent: "analyst"
         command: "/bmad:bmm:workflows:research"
       - id: "product-brief"
-        status: "required"
+        status: "completed"
         agent: "analyst"
         command: "/bmad:bmm:workflows:create-product-brief"
 
@@ -29,7 +29,7 @@ workflow_status:
     name: "Planning"
     workflows:
       - id: "prd"
-        status: "required"
+        status: "in-progress"
         agent: "pm"
         command: "/bmad:bmm:workflows:create-prd"
       - id: "create-ux-design"
