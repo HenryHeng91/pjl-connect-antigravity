@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [step-01-init, step-02-discovery, step-03-success, step-04-journeys]
+stepsCompleted: [step-01-init, step-02-discovery, step-03-success, step-04-journeys, step-05-domain, step-06-innovation, step-07-project-type, step-08-scoping, step-09-functional, step-10-nonfunctional, step-11-polish, step-12-complete]
 inputDocuments: ['_bmad-output/planning-artifacts/product-brief-PJL-Connect-2026-01-24.md', '_bmad-output/analysis/brainstorming-session-2026-01-23.md']
 workflowType: 'prd'
 documentCounts:
@@ -20,6 +20,370 @@ classification:
 **Author:** Antigravity  
 **Date:** 2026-01-31  
 **Version:** 1.0
+
+---
+
+## Executive Mindmap Summary (Mindomo-Compatible)
+
+```
+PJL Connect - Multi-Modal Logistics Operating System
+	Problem Statements
+		Manual Chaos in Operations
+			Fragmented Telegram chats with critical data in personal histories
+			OPS spending 4+ hours/day on manual Excel data entry
+			40% of OPS time answering "Where is my truck?" calls
+			No single source of truth for shipment status
+		Document Processing Pain
+			Inaccurate SAD drafting causing "Red Lane" customs inspections
+			Delayed document collection missing ETD deadlines
+			Manual typing into ASYCUDA government portal
+		Financial Visibility Gap
+			Delayed invoicing causing revenue leakage
+			Untracked expenses per shipment
+			Management waiting for monthly reports instead of real-time data
+		Scalability Barrier
+			Current process cannot scale beyond current volume
+			Carrier/driver management is ad-hoc
+			No system to sell to other logistics companies
+	Goal
+		Primary Goal
+			Automate 99% of "Happy Path" logistics operations
+			Human-in-the-loop only for 1% exceptions
+			Transform manual chaos into structured, trackable workflow
+		MVP Goal (Month 1-3)
+			First customer fully operational on new system
+			All internal teams using PJL Connect
+			Core booking-to-delivery cycle automated
+		Growth Goal (Month 4-12)
+			100% of PJL bookings processed through new workflow
+			Full feature set deployed
+			6-month adoption curve respected
+		Vision Goal (Month 12-24)
+			Multi-tenant SaaS platform ready
+			Sell system to other Cambodia logistics companies
+			Position as "Invisible App" logistics pioneer
+	Feasibility Study
+		Technical Feasibility
+			Laravel 11 on dedicated VPS (proven stack)
+			Telegram Bot API (stable, well-documented)
+			Google Cloud Vision OCR (high accuracy, reasonable cost)
+			No complex integrations for MVP (Copy-Paste Magic for ASYCUDA)
+		Operational Feasibility
+			OPS team receptive to reducing manual work
+			Telegram already used by all stakeholders
+			6-month hybrid period to ease transition
+			OPS controls migration pace (not forced on customers)
+		Financial Feasibility
+			Cloud Vision: ~$1.50 per 1000 pages (minimal OCR cost)
+			VPS hosting: existing infrastructure
+			ROI: 4 hours/day OPS time saved = significant labor savings
+	Stakeholder Personas
+		Customer (Industrial/Logistics Managers)
+			Pain: Multiple calls/messages to track shipments
+			Goal: Zero-friction booking, "Quiet Bot" that only pings when needed
+			Success: Book via Telegram, get Visual Receipt, track without calling OPS
+		OPS Personnel (Back-Office Command Center)
+			Pain: 4+ hours daily on manual data entry, constant status calls
+			Goal: Kanban dashboard, 90% automation, focus on exceptions
+			Success: System handles routine, human handles edge cases
+		Driver (External/Gig-Economy Executors)
+			Pain: App fatigue, complex tracking requirements
+			Goal: Passive location sharing, no new app installs
+			Success: Share location via Telegram, tap buttons for status
+		Customs Broker (Compliance Guards)
+			Pain: Manual ASYCUDA data entry, "Red Lane" inspections
+			Goal: One-click SAD review, formatted data ready for paste
+			Success: Copy-Paste Magic reduces typing by 80%
+		Carrier (Fleet Owners/Dispatchers)
+			Pain: Missed booking opportunities, inconsistent communication
+			Goal: High truck utilization, consistent booking volume
+			Success: Receive jobs via Telegram, accept with one tap
+		Accounting (Corporate Finance)
+			Pain: Manual invoice creation, delayed financial data
+			Goal: 100% data consistency, one-click ledger sync
+			Success: Export to QuickBooks with complete shipment data
+		Management (CEO/Strategic Owner)
+			Pain: Monthly reports, no real-time visibility
+			Goal: Live profit-per-booking dashboard, "Lane Velocity" metrics
+			Success: Dashboard with booking volume, revenue, margins
+	Current Business Process
+		Booking
+			Customer sends request via personal Telegram/Line chat
+			OPS manually extracts data from various document formats
+			Data entered into Excel spreadsheet
+			Confirmation sent back via chat
+		Carrier Assignment
+			OPS calls/messages carriers individually
+			Waits for confirmation via chat
+			No systematic tracking of carrier availability
+			Manual follow-up if no response
+		Shipment Tracking
+			OPS calls driver for status updates
+			Customer calls OPS asking "Where is my truck?"
+			No real-time GPS visibility
+			Manual status updates in Excel
+		Customs Clearance
+			Broker manually types SAD data into ASYCUDA
+			High error rate causing "Red Lane" inspections
+			Deadline tracking via memory/calendar
+		Invoicing
+			OPS creates invoices manually after delivery
+			Data copied from Excel to accounting software
+			Delays in invoicing cause cash flow issues
+	Proposed Business Process
+		Booking
+			Customer sends /new via PJL Customer Bot
+			System OCR extracts data from any document format
+			Customer confirms/corrects via inline buttons
+			Visual Receipt Card sent as confirmation
+			Booking auto-assigned to available OPS
+		Carrier Assignment
+			System sends job to carrier via PJL Carrier Bot
+			Nag-Bot repeats every 5 minutes until response
+			OPS alerted if no response within threshold
+			Driver bound to job, location sharing activated
+		Shipment Tracking
+			Driver shares live location via Telegram
+			Customer tracks via /track command with live map
+			Geofence triggers auto "Arrived/Departed" status
+			Silence Escalation alerts OPS if GPS goes dark
+			ETA calculated and updated in real-time
+		Customs Clearance
+			System generates Copy-Paste Magic data blocks
+			Broker reviews and pastes into ASYCUDA
+			ETD-based deadline engine sends automatic reminders
+			Document status tracked in system
+		Invoicing
+			System generates invoice on job completion
+			One-click export to QuickBooks format
+			Profit per booking calculated automatically
+			Real-time financial dashboard available
+	Research & Best Practices
+		Market Inspirations
+			WhatsApp Business API logistics patterns
+			Project44 real-time visibility platform
+			Flexport digital freight forwarding
+			Uber Freight driver-side simplicity
+		Technology Best Practices
+			Telegram Bot API for "Invisible App" approach
+			Google Cloud Vision for form-agnostic OCR
+			Geofencing for automatic status triggers
+			Confidence scoring for OCR validation
+		Logistics Industry Standards
+			ASYCUDA customs declaration format (Cambodia)
+			Container number validation patterns
+			Bill of Lading / AWB tracking standards
+			Multi-modal shipment handling
+	5W Analysis
+		What
+			Multi-Modal Logistics Operating System
+			Telegram-native bots for all stakeholders
+			Web-based Back-Office for OPS
+			Intelligence Hub for automation
+		Who
+			Primary: OPS Personnel (daily users)
+			Secondary: Customers, Drivers, Carriers
+			Tertiary: Broker, Accounting, Management
+			Future: Other Cambodia logistics companies (SaaS)
+		When
+			MVP: Month 1-3 (core booking/tracking)
+			Growth: Month 4-12 (full feature set)
+			SaaS: Month 12-24 (multi-tenant)
+		Where
+			Cambodia cross-border logistics
+			Land (trucking), Sea (freight), Air (cargo)
+			Vietnam, Thailand route corridors
+		Why
+			Eliminate manual chaos (4 hours/day saved)
+			Reduce "Red Lane" customs inspections
+			Enable real-time visibility for all stakeholders
+			Create SaaS revenue stream
+	Functional Requirements (52 FRs)
+		Customer Management (FR1-FR3)
+			FR1: Customer registration via /start
+			FR2: Telegram ID binding (passwordless)
+			FR3: OPS manages customer profiles
+		Booking & Shipment (FR4-FR12)
+			FR4-FR9: Booking creation, OCR, confirmation
+			FR10-FR12: OPS booking management
+		Job Management (FR13-FR24)
+			FR13-FR18: Job creation, Kanban, assignment
+			FR19-FR20: Auto-assign and manager override
+			FR21-FR24: Document printing, viewing, annotation
+		Carrier & Driver (FR25-FR31)
+			FR25-FR28: Carrier notifications, Nag-Bot
+			FR29-FR31: Driver location tracking
+		Tracking & Monitoring (FR32-FR37)
+			FR32-FR34: Customer tracking, Silence Escalation
+			FR35-FR37: ETA, geofencing
+		Document & Compliance (FR38-FR42)
+			FR38-FR40: Document management, Copy-Paste Magic
+			FR41-FR42: Deadline tracking, reminders
+		Financial & Reporting (FR43-FR47)
+			FR43-FR44: Invoice generation, QuickBooks export
+			FR45-FR47: Dashboard, profit calculation, audit trail
+		Administration (FR48-FR52)
+			FR48-FR49: User management, RBAC
+			FR50-FR52: Rate cards, carriers, settings
+	Non-Functional Requirements (14 NFRs)
+		Performance
+			NFR1: Dashboard loads in 3 seconds
+			NFR2: Bot responds in 2 seconds
+			NFR3: Location updates in 10 seconds
+			NFR4: OCR completes in 30 seconds
+		Reliability
+			NFR5: 99% uptime
+			NFR6: 24/7 bot availability
+			NFR7: Transaction-safe operations
+		Security
+			NFR8: HTTPS/TLS encryption in transit
+			NFR9: RBAC enforcement
+			NFR10: Audit trail for changes
+			NFR11: Passwordless Telegram auth
+		Integration
+			NFR12: Telegram rate limit handling
+			NFR13: Valid QuickBooks export format
+			NFR14: OCR fallback to manual
+	Use Cases Outline
+		UC1: Customer Books Shipment
+			Actor: Customer via Telegram
+			Flow: /new → Upload → OCR → Confirm → Receipt
+			Success: Booking created with unique reference
+		UC2: OPS Manages Jobs
+			Actor: OPS via Back-Office
+			Flow: View Kanban → Assign Carrier → Monitor → Close
+			Success: Job completed with full audit trail
+		UC3: Driver Shares Location
+			Actor: Driver via Telegram
+			Flow: Accept job → Share location → Arrive → Complete
+			Success: Real-time tracking visible to OPS/Customer
+		UC4: Broker Prepares SAD
+			Actor: Broker via Back-Office
+			Flow: Review data → Copy-Paste Magic → Paste to ASYCUDA
+			Success: SAD submitted without "Red Lane"
+		UC5: Accounting Exports Data
+			Actor: Accounting via Back-Office
+			Flow: Select period → Export → Import to QuickBooks
+			Success: Financial data synced accurately
+	Out of Scope (MVP)
+		Technical
+			Multi-tenant architecture
+			Direct ASYCUDA API integration
+			Shipping line/airline API tracking
+			Data encryption at rest
+		Features
+			Carrier onboarding self-service
+			System admin self-configuration
+			Automated customs document generation
+			Multi-currency support (USD only)
+		Integrations
+			Direct vessel tracking APIs
+			Direct airline tracking APIs
+			Payment gateway integration
+	User Journey Outline
+		J1: Customer Booking (Happy Path)
+			/start → /new → Upload → OCR → Confirm → Receipt
+		J2: OPS Command Center (28 Steps)
+			Dashboard → Assignment → Tracking → Escalation → Close
+		J3: Driver Recovery (GPS Failure)
+			GPS blackout → Silence Escalation → OPS alert → Manual override
+		J4: Carrier Onboarding
+			QR enrollment → Driver binding → Compliance checklist
+		J5: System Admin Configuration
+			User management → RBAC → Rate cards → Geofences
+		J6: Broker Compliance (SAD)
+			Review data → Copy-Paste Magic → ASYCUDA paste
+		J7: Accounting Financial Close
+			Invoice generation → QuickBooks export → Period summary
+	Risk
+		Technical Risks
+			Risk: OCR accuracy for varied document formats
+				Mitigation: Confidence scoring + Verification Loop + OPS fallback
+			Risk: Telegram API rate limits or changes
+				Mitigation: Graceful degradation, OPS notification
+			Risk: GPS blackouts from driver phones
+				Mitigation: Silence Escalation protocol
+		Market Risks
+			Risk: User adoption resistance
+				Mitigation: 6-month hybrid period, OPS controls pace
+			Risk: Customer preference for existing workflow
+				Mitigation: "Quiet Bot" philosophy, minimal change
+		Resource Risks
+			Risk: Small development team
+				Mitigation: Single-tenant MVP reduces complexity
+			Risk: Scope creep
+				Mitigation: Strict MVP boundaries, deferred backlog
+	Pre-Solution
+		Manual Process Analysis
+			Observed OPS workflow for 2 weeks
+			Documented all Telegram chat patterns
+			Identified 4-hour daily manual work
+		Stakeholder Interviews
+			Customer pain points identified
+			Driver friction points documented
+			Broker ASYCUDA workflow mapped
+		Technology Evaluation
+			Telegram Bot API validated for requirements
+			OCR services benchmarked (Cloud Vision selected)
+			Laravel stack confirmed as suitable
+	System Overview
+		PJL Connect Back-Office (Web App)
+			Dashboard with Pulse Snapshot and Trends
+			Booking List and Multi-Leg Builder
+			Job Kanban and Detail Console
+			Financial Console with Invoice Generation
+			Admin Configurator for Rules and Users
+		PJL Customer Bot (Telegram)
+			/start - Registration with Telegram ID binding
+			/new - Booking with OCR and Visual Receipt
+			/track - Live journey map and status
+			/help - Escalation to human OPS
+		PJL Carrier & Driver Bot (Telegram)
+			/enroll - QR-based driver binding
+			/accept - Job acknowledgment with Nag-Bot
+			/location - Native Telegram live sharing
+		PJL OPS Internal Bot (Telegram Group)
+			Real-time job alerts
+			Exception pings for escalations
+			Deep-links to Back-Office
+		PJL Intelligence Hub (Core Engine)
+			OCR Engine with confidence scoring
+			Multi-Modal Rule Engine for leg dependencies
+			SAD-Mapper for ASYCUDA formatting
+			Tracking Aggregator for GPS streams
+			Geofencing Logic for auto-triggers
+			Silence Escalation for blackout detection
+	Milestones
+		MVP (Month 1-3)
+			Sprint 1-2: Core database, user auth, basic bot
+			Sprint 3-4: Booking flow, OCR integration
+			Sprint 5-6: Job management, Kanban
+			Sprint 7-8: Tracking, Silence Escalation
+			Sprint 9-10: Testing, first customer live
+		Growth (Month 4-12)
+			Full document management
+			Copy-Paste Magic for ASYCUDA
+			QuickBooks export
+			Advanced reporting dashboard
+			100% PJL bookings on system
+		SaaS (Month 12-24)
+			Multi-tenant architecture
+			Subscription billing
+			White-label options
+			Cambodia market launch
+	Sequence Diagrams
+		Customer Booking Flow
+			Customer → Bot → OCR → Confidence Check → Customer Confirm → OPS
+		Carrier Assignment Flow
+			OPS → System → Carrier Bot → Nag Loop → Driver Bind → Location Start
+		Tracking Flow
+			Driver Location → System → Geofence Check → Status Update → Customer Notify
+		Silence Escalation Flow
+			GPS Blackout → Timer → OPS Alert → Manual Override → Resume
+		SAD Preparation Flow
+			Job Data → SAD Mapper → Copy-Paste Block → Broker Review → ASYCUDA Paste
+```
+
 
 ## Project Classification
 
@@ -1302,3 +1666,419 @@ failure_modes:
 | **J5: System Admin** | RBAC, User Management, Rate Card Editor, Geofence Manager, Audit Trail |
 | **J6: Broker Compliance** | SAD-Mapper, Copy-Paste Magic, HS Code Lookup, ASYCUDA Status Tracking |
 | **J7: Accounting Close** | Invoice Generator, Ledger Sync API, Period Summary, Export Functions |
+
+---
+
+## Domain-Specific Requirements
+
+### Compliance & Regulatory
+
+| Requirement | Scope | MVP Approach |
+|-------------|-------|--------------|
+| **Customs Documentation** | CO, Invoice, Packing List, Loading Plan | Collected from customer; OPS attaches to booking |
+| **Import Customs Preparation** | SAD and supporting docs | Manual handling by Broker team (document generator deferred) |
+| **ASYCUDA Submission** | Government customs portal | "Copy-Paste Magic" bridge with modular format mapping |
+
+### Technical Constraints
+
+| Constraint | Decision |
+|------------|----------|
+| **Primary Interface** | Telegram-first (no app installations) |
+| **Location Sharing Limit** | Telegram 8-hour limit; system re-prompts when needed |
+| **Data Residency** | Deferred—no immediate requirements |
+| **Driver Connectivity** | Deferred—assume adequate mobile coverage |
+
+### Integration Requirements
+
+| System | Integration Strategy |
+|--------|---------------------|
+| **Accounting (QuickBooks)** | "Export to QuickBooks" function for financial data |
+| **Customs (ASYCUDA)** | Manual copy-paste via formatted data blocks |
+| **Vessel Tracking** | Manual entry by OPS in Back-Office (no API) |
+| **Flight Tracking** | Manual entry by OPS in Back-Office (no API) |
+
+### Domain-Specific Risks & Mitigations
+
+| Risk | Mitigation |
+|------|------------|
+| **ASYCUDA Format Changes** | Modular SAD mapping logic; update format mappings as needed |
+| **Multi-Currency Complexity** | USD-only for MVP; no rate conversion required |
+| **GPS Blackouts** | Silence Escalation protocol + OPS manual override |
+| **Carrier Non-Response** | Nag-Bot with escalation + OPS fallback |
+
+---
+
+## Innovation & Novel Patterns
+
+### Detected Innovation Areas
+
+#### 1. The "Invisible App" Philosophy
+
+**Innovation:** No new app installations for drivers or customers. Leverage existing Telegram behavior for enterprise-grade logistics operations.
+
+**Novelty:** Transforming a consumer chat app into a full-scale corporate ERP terminal. Users stay in their comfort zone while the system gains structure.
+
+**Validation:** User adoption metrics; comparison of onboarding time vs. traditional app-based solutions.
+
+---
+
+#### 2. Zero-Device GPS Tracking
+
+**Innovation:** Native Telegram live location sharing for truck tracking. No hardware GPS devices required.
+
+**Novelty:** Software-based tracking using existing smartphone capabilities. Potential to commercialize as standalone SaaS product.
+
+**SaaS Potential:** Spin-off as "Zero-Device Tracking SaaS" for Cambodia logistics market.
+
+---
+
+#### 3. "Copy-Paste Magic" for ASYCUDA
+
+**Innovation:** OCR extraction → formatted data blocks → manual paste into government customs portal.
+
+**Novelty:** 80% reduction in manual typing without requiring complex system-to-system API integration with government systems.
+
+**Risk Mitigation:** Modular format mapping; when ASYCUDA changes, update mapping logic only.
+
+---
+
+#### 4. Silence Escalation Protocol
+
+**Innovation:** Shift from "harass the driver" to "alert the OPS." System notifies humans when automation fails, not vice versa.
+
+**Pattern:** Human-in-the-loop only for exceptions (1% of cases). 99% automation rate with graceful degradation.
+
+---
+
+#### 5. Form-Agnostic OCR Intake
+
+**Innovation:** Accept ANY customer document format (PDF, Excel, photo) and extract booking data automatically.
+
+**Novelty:** Treats document variety as a feature, not a problem. Eliminates "use our template" friction.
+
+##### Technical Implementation
+
+**Architecture Flow:**
+
+```
+Customer Bot → Document Queue → OCR Engine → Field Mapper → Confidence Router
+    (Any format)   (File storage)  (Cloud AI)   (Service-aware)     ↓
+                                                           ┌────────┼────────┐
+                                                           ▼        ▼        ▼
+                                                       >85%     70-85%    <70%
+                                                       Auto    Suggest   Manual
+```
+
+**Document Ingestion:**
+
+| Input Type | Processing |
+|------------|------------|
+| **PDF** | Extract as images OR parse native text if available |
+| **Excel** | Parse directly using library (PhpSpreadsheet) |
+| **Images** | Pass directly to OCR engine |
+
+**OCR Engine Options:**
+
+| Service | Strength | Approx. Cost |
+|---------|----------|--------------|
+| **Google Cloud Vision** | Excellent at handwritten + printed text | ~$1.50 per 1000 pages |
+| **AWS Textract** | Best for forms/tables extraction | ~$1.50 per page (forms) |
+
+**Recommendation:** Start with Google Cloud Vision for MVP; evaluate AWS Textract for structured forms in Growth phase.
+
+**Field Extraction (Service-Aware Context):**
+
+When customer selects service type BEFORE uploading, system loads specialized extraction rules:
+
+- **Truck Service:** Container Number, Weight, CBM, Pickup/Delivery addresses
+- **Sea Freight:** Bill of Lading, Vessel Name, ETD, Port of Loading/Discharge
+- **Air Freight:** AWB Number, Flight Number, Commodity Description
+
+**Confidence Scoring:**
+
+| Confidence | Action |
+|------------|--------|
+| **>85%** | Auto-accept; display in Visual Receipt Card |
+| **70-85%** | Show with "Suggested" tag; prompt for confirmation |
+| **<70%** | Highlight as "Needs Review"; customer must correct |
+
+**Verification Loop:**
+
+Low-confidence fields trigger customer confirmation via Telegram inline buttons:
+- Customer confirms or edits incorrect values
+- Corrections logged for potential model improvement
+
+**MVP Simplification:**
+
+1. **Phase 1:** Start with Excel parsing (most common format, no OCR needed)
+2. **Phase 2:** Add PDF/Image OCR via Cloud Vision API
+3. **Fallback:** OPS manual correction for all edge cases
+
+---
+
+### Validation Built Into Design
+
+| Innovation | Validation Approach |
+|------------|---------------------|
+| **Invisible App** | User adoption rate; onboarding time comparison |
+| **Zero-Device GPS** | Tracking availability %; comparison to hardware GPS |
+| **Copy-Paste Magic** | Time-to-submission; ASYCUDA acceptance rate |
+| **Silence Escalation** | OPS workload reduction; false positive rate |
+| **Form-Agnostic OCR** | First-pass accuracy %; customer correction rate |
+
+---
+
+## SaaS B2B Platform Requirements
+
+### Tenant Model
+
+| Phase | Approach |
+|-------|----------|
+| **MVP (Month 1-3)** | Single-tenant: PJL Connect only |
+| **SaaS (Month 12-24)** | Multi-tenant architecture with data isolation |
+
+**MVP Simplification:** No tenant switching, no white-labeling. Single company configuration.
+
+**Future:** Tenant isolation, per-tenant branding, separate data stores.
+
+---
+
+### RBAC Permission Matrix
+
+| Role | Jobs | Booking | Reports | Financial | Compliance | Admin |
+|------|------|---------|---------|-----------|------------|-------|
+| **Admin** | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full | ✅ Full |
+| **OPS Manager** | ✅ Full | ✅ Full | ✅ Full | 👁️ Read | ❌ | ❌ |
+| **OPS Staff** | ✅ Full | ✅ Full | ❌ | ❌ | ❌ | ❌ |
+| **Broker** | 👁️ Read | ❌ | ❌ | ❌ | ✅ Full | ❌ |
+| **Accounting** | ❌ | ❌ | ✅ Full | ✅ Full | ❌ | ❌ |
+| **Viewer** | 👁️ Read | 👁️ Read | 👁️ Read | ❌ | ❌ | ❌ |
+
+---
+
+### Integration Summary
+
+| System | MVP Integration | Notes |
+|--------|----------------|-------|
+| **Telegram Bot API** | ✅ Primary interface | Customer, Carrier, Driver, OPS bots |
+| **QuickBooks** | ✅ Export function | "Export to QuickBooks" for financial data |
+| **ASYCUDA** | ✅ Copy-Paste Magic | Manual bridge via formatted data blocks |
+| **Vessel/Flight Tracking** | ❌ Manual entry | OPS enters tracking info in Back-Office |
+| **Third-party APIs** | ❌ Deferred | No external API integrations for MVP |
+
+---
+
+### Subscription Tiers (Backlog - SaaS Phase)
+
+> **Deferred to Year 2 SaaS Launch**
+
+Future options to evaluate:
+- Per-shipment pricing
+- Tier-based (volume caps)
+- Flat monthly subscription
+
+**Tracking:** Added to product backlog for SaaS phase planning.
+
+---
+
+## Project Scoping & Phased Development
+
+### MVP Strategy & Philosophy
+
+**MVP Type:** Problem-Solving MVP  
+**Focus:** Solve PJL's immediate operational pain points before expanding to SaaS
+
+**Core Value Proposition:** OPS can process bookings and track shipments without manual chaos.
+
+---
+
+### Phase Development Roadmap
+
+| Phase | Timeline | Key Deliverables |
+|-------|----------|------------------|
+| **MVP** | Month 1-3 | Single-tenant; core booking, tracking, OPS dashboard |
+| **Growth** | Month 4-12 | 100% PJL bookings on system; full feature set |
+| **SaaS** | Month 12-24 | Multi-tenant; commercialize to Cambodia market |
+
+---
+
+### MVP Must-Have Journeys (Phase 1)
+
+| Journey | MVP Status | Rationale |
+|---------|------------|-----------|
+| **J1: Customer Booking** | ✅ Required | Core booking flow via Telegram |
+| **J2: OPS Command Center** | ✅ Required | Central dashboard for job management |
+| **J3: Driver Recovery** | ✅ Required | Tracking + Silence Escalation |
+| **J4: Carrier Onboarding** | ⏳ Deferred | Use manual process initially |
+| **J5: System Admin** | ⏳ Deferred | Hardcode initial configuration |
+| **J6: Broker Compliance** | ⏳ Deferred | Copy-Paste Magic after tracking works |
+| **J7: Accounting Close** | ⏳ Deferred | Manual export to QuickBooks initially |
+
+---
+
+### MVP Technical Scope
+
+| Component | MVP Scope |
+|-----------|-----------|
+| **OCR Engine** | ✅ Full: PDF, Image, Excel, Word via Google Cloud Vision |
+| **Telegram Bots** | ✅ Customer Bot, Driver Bot, OPS Bot |
+| **Back-Office** | ✅ Dashboard, Booking List, Job Kanban |
+| **Vessel/Flight Tracking** | ❌ Manual entry by OPS |
+| **Multi-tenant** | ❌ Single company only |
+| **Subscription Billing** | ❌ N/A for MVP |
+
+---
+
+### Risk Mitigation Strategy
+
+| Risk Type | Risk | Mitigation |
+|-----------|------|------------|
+| **Technical** | OCR accuracy for varied documents | Confidence scoring + Verification Loop + OPS fallback |
+| **Market** | User adoption resistance | 6-month hybrid period; OPS controls migration pace |
+| **Resource** | Small development team | Single-tenant MVP reduces architectural complexity |
+
+---
+
+## Functional Requirements
+
+> **Capability Contract:** UX, Architecture, and Epics will only implement what's listed here.
+
+### Customer Management
+
+| FR# | Requirement |
+|-----|-------------|
+| FR1 | Customer can register via Telegram using `/start` command |
+| FR2 | System can bind Telegram ID to customer profile (passwordless auth) |
+| FR3 | OPS can create and manage customer profiles in Back-Office |
+
+### Booking & Shipment
+
+| FR# | Requirement |
+|-----|-------------|
+| FR4 | Customer can create a new booking via `/new` command |
+| FR5 | Customer can select service type (Truck, Sea, Air, Multi-leg) |
+| FR6 | Customer can upload booking documents in any format (PDF, Excel, Word, Image) |
+| FR7 | System can extract booking data from uploaded documents via OCR |
+| FR8 | Customer can confirm or correct OCR-extracted data |
+| FR9 | Customer can receive Visual Receipt Card confirming booking details |
+| FR10 | OPS can view all bookings in a filterable list |
+| FR11 | OPS can manually create bookings on behalf of customers |
+| FR12 | OPS can attach shipping documents to any booking/job |
+
+### Job Management
+
+| FR# | Requirement |
+|-----|-------------|
+| FR13 | System can convert confirmed bookings into jobs |
+| FR14 | OPS can view jobs in Kanban format (by status) |
+| FR15 | OPS can assign carriers to jobs |
+| FR16 | OPS can manually override job status |
+| FR17 | OPS can add comments/notes to jobs |
+| FR18 | System can generate unique job reference numbers |
+| FR19 | System can auto-assign bookings to available OPS based on current workload |
+| FR20 | OPS Manager can manually assign bookings to specific OPS staff |
+| FR21 | OPS can print all documents attached to a job directly from the system |
+| FR22 | OPS can view all document formats directly within the system (in-browser preview) |
+| FR23 | OPS can annotate PDF documents with remarks (red text, circles, rectangles) |
+| FR24 | OPS can print booking summary cover page (booking number, container qty, weight, origin, destination) |
+
+
+### Carrier & Driver Management
+
+| FR# | Requirement |
+|-----|-------------|
+| FR25 | Carrier can receive job notifications via Telegram |
+| FR26 | Carrier can accept or decline jobs |
+| FR27 | System can send repeated notifications until carrier responds (Nag-Bot) |
+| FR28 | OPS can receive escalation if carrier doesn't respond within threshold |
+| FR29 | Driver can share live location via Telegram |
+| FR30 | System can track driver location in real-time |
+| FR31 | OPS can view driver location on map |
+
+### Tracking & Monitoring
+
+| FR# | Requirement |
+|-----|-------------|
+| FR32 | Customer can track shipment status via `/track` command |
+| FR33 | System can detect location sharing blackouts |
+| FR34 | System can alert OPS when driver location goes silent (Silence Escalation) |
+| FR35 | OPS can manually enter vessel/flight tracking information |
+| FR36 | System can calculate ETA based on route and current location |
+| FR37 | System can detect geofence entry/exit events (Arrived/Departed) |
+
+### Document & Compliance
+
+| FR# | Requirement |
+|-----|-------------|
+| FR38 | OPS can view all documents attached to a job |
+| FR39 | System can generate formatted data blocks for ASYCUDA (Copy-Paste Magic) |
+| FR40 | Broker can review SAD data before submission |
+| FR41 | System can track document submission deadlines based on ETD |
+| FR42 | Customer can receive reminders for pending documents |
+
+### Financial & Reporting
+
+| FR# | Requirement |
+|-----|-------------|
+| FR43 | OPS can generate invoices for completed jobs |
+| FR44 | Accounting can export financial data to QuickBooks format |
+| FR45 | Management can view dashboard with key metrics (booking volume, revenue) |
+| FR46 | System can calculate profit per booking |
+| FR47 | OPS can view job history and audit trail |
+
+### Administration
+
+| FR# | Requirement |
+|-----|-------------|
+| FR48 | Admin can create and manage user accounts |
+| FR49 | Admin can assign roles and permissions (RBAC) |
+| FR50 | Admin can configure rate cards and pricing |
+| FR51 | Admin can manage carrier database |
+| FR52 | Admin can configure system settings |
+
+---
+
+## Non-Functional Requirements
+
+### Performance
+
+| NFR# | Requirement |
+|------|-------------|
+| NFR1 | Back-Office dashboard loads within 3 seconds |
+| NFR2 | Telegram bot responds within 2 seconds for standard commands |
+| NFR3 | Location tracking updates reflect within 10 seconds |
+| NFR4 | OCR document processing completes within 30 seconds |
+
+### Reliability
+
+| NFR# | Requirement |
+|------|-------------|
+| NFR5 | System uptime ≥99% (allows ~7 hours downtime/month) |
+| NFR6 | Telegram bot available 24/7 (customers book anytime) |
+| NFR7 | No data loss on system failure (transaction-safe operations) |
+
+### Security
+
+| NFR# | Requirement |
+|------|-------------|
+| NFR8 | All data encrypted in transit (HTTPS/TLS) |
+| NFR9 | Role-based access control enforced for all Back-Office actions |
+| NFR10 | Audit trail for all financial and job status changes |
+| NFR11 | Passwordless auth via Telegram ID (no passwords to steal) |
+
+### Scalability
+
+> **Deferred to SaaS Phase:** Single-tenant MVP for PJL only.
+
+### Accessibility
+
+> **Not Applicable:** B2B internal tool; no public accessibility requirements for MVP.
+
+### Integration
+
+| NFR# | Requirement |
+|------|-------------|
+| NFR12 | Telegram Bot API integration must handle rate limits gracefully |
+| NFR13 | QuickBooks export generates valid import format |
+| NFR14 | OCR engine fallback to manual entry on API failure |
+
