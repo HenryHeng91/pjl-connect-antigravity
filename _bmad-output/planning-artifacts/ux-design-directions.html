@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJL Connect - Design Direction Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .theme-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .theme-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .active-theme { ring: 4px; ring-color: #1e5a6b; }
+        .preview-area { min-height: 80vh; }
+        
+        /* Deep Teal: #1E5A6B, Sky Blue: #5BC0DE */
+        .color-primary { background-color: #1E5A6B; }
+        .color-accent { background-color: #5BC0DE; }
+        .text-primary { color: #1E5A6B; }
+        .text-accent { color: #5BC0DE; }
+        .border-primary { border-color: #1E5A6B; }
+    </style>
+</head>
+<body class="p-8">
+    <header class="mb-12 max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Design Direction Showcase</h1>
+        <p class="text-xl text-gray-600 italic">"Make handling logistics intuitive and seamless"</p>
+        <div class="mt-4 flex gap-4 text-sm font-medium">
+            <span class="px-3 py-1 bg-[#1E5A6B] text-white rounded-full">Deep Teal: #1E5A6B</span>
+            <span class="px-3 py-1 bg-[#5BC0DE] text-white rounded-full">Sky Blue: #5BC0DE</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Theme 1: Clean Operations -->
+            <div onclick="selectTheme(1)" class="theme-card bg-white p-6 rounded-2xl border border-gray-200" id="card-1">
+                <h3 class="text-lg font-bold mb-2">1. Clean Operations</h3>
+                <p class="text-sm text-gray-500 mb-4">High contrast, professional, clear hierarchy. Focus on efficiency and data accuracy.</p>
+                <div class="flex gap-2 h-12">
+                    <div class="w-full bg-[#1E5A6B] rounded"></div>
+                    <div class="w-1/2 bg-gray-100 rounded"></div>
+                    <div class="w-1/4 bg-[#5BC0DE] rounded"></div>
+                </div>
+            </div>
+
+            <!-- Theme 2: Modern Logistics -->
+            <div onclick="selectTheme(2)" class="theme-card bg-white p-6 rounded-2xl border border-gray-200" id="card-2">
+                <h3 class="text-lg font-bold mb-2">2. Modern Logistics</h3>
+                <p class="text-sm text-gray-500 mb-4">Softer edges, subtle gradients, more Sky Blue. Friendly, modern SaaS feel.</p>
+                <div class="flex gap-2 h-12">
+                    <div class="w-full bg-[#5BC0DE] rounded"></div>
+                    <div class="w-1/2 bg-[#1E5A6B] rounded opacity-80"></div>
+                    <div class="w-1/4 bg-gray-100 rounded"></div>
+                </div>
+            </div>
+
+            <!-- Theme 3: Focus First -->
+            <div onclick="selectTheme(3)" class="theme-card bg-white p-6 rounded-2xl border border-gray-200" id="card-3">
+                <h3 class="text-lg font-bold mb-2">3. Focus First</h3>
+                <p class="text-sm text-gray-500 mb-4">Darker backgrounds for data, high focus on red exceptions. Air-traffic control vibe.</p>
+                <div class="flex gap-2 h-12">
+                    <div class="w-full bg-[#1E5A6B] text-white flex items-center justify-center font-bold rounded">FOCUS</div>
+                    <div class="w-1/2 bg-red-500 rounded"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Area -->
+        <div class="bg-white rounded-2xl border-4 border border-gray-200 shadow-2xl overflow-hidden preview-area" id="preview">
+            <!-- Content injected via JS -->
+        </div>
+    </main>
+
+    <footer class="mt-12 max-w-7xl mx-auto text-center text-gray-500 text-sm">
+        PJL Connect UX Design Specification - Step 9
+    </footer>
+
+    <script>
+        function selectTheme(id) {
+            // Update active states
+            document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('ring-4', 'ring-[#1e5a6b]'));
+            document.getElementById('card-' + id).classList.add('ring-4', 'ring-[#1e5a6b]');
+            
+            const preview = document.getElementById('preview');
+            
+            if(id === 1) {
+                preview.innerHTML = `
+                    <div class="flex h-full min-h-[600px]">
+                        <!-- Sidebar -->
+                        <div class="w-64 bg-[#1E5A6B] p-6 text-white shrink-0">
+                            <div class="text-xl font-bold mb-8">PJL CONNECT</div>
+                            <nav class="space-y-4">
+                                <div class="bg-white/10 p-2 rounded flex items-center gap-3">
+                                    <span class="w-5 h-5 bg-white/20 rounded-full"></span> Exception Board
+                                </div>
+                                <div class="p-2 rounded flex items-center gap-3 hover:bg-white/5 cursor-pointer text-white/70">
+                                    <span class="w-5 h-5 bg-white/20 rounded-full"></span> All Shipments
+                                </div>
+                                <div class="p-2 rounded flex items-center gap-3 hover:bg-white/5 cursor-pointer text-white/70">
+                                    <span class="w-5 h-5 bg-white/20 rounded-full"></span> Carriers
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1 bg-gray-50 p-8">
+                            <div class="flex justify-between items-center mb-8">
+                                <h2 class="text-2xl font-bold text-gray-900 line-clamp-1">Exception Kanban Board</h2>
+                                <div class="flex gap-2">
+                                    <button class="bg-[#1E5A6B] text-white px-4 py-2 rounded-lg font-medium">New Shipment</button>
+                                </div>
+                            </div>
+                            <!-- Board Columns -->
+                            <div class="grid grid-cols-3 gap-6">
+                                <!-- Column 1 -->
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between font-semibold border-b pb-2">
+                                        <span>Pick Up</span>
+                                        <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">4</span>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-xs font-mono text-gray-500">#PJL-9842</span>
+                                            <span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase tracking-wider">Ready</span>
+                                        </div>
+                                        <div class="font-bold text-sm mb-1 line-clamp-1">Container 40ft Header</div>
+                                        <div class="text-xs text-gray-500 mb-4 line-clamp-1 border-t pt-2">Phnom Penh → Sihanoukville</div>
+                                        <div class="flex items-center gap-2 mt-4 pt-2 border-t">
+                                            <div class="w-6 h-6 bg-[#5BC0DE] rounded-full"></div>
+                                            <span class="text-xs font-medium line-clamp-1">Driver: Sophal S.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Column 2 -->
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between font-semibold border-b pb-2">
+                                        <span>Customs Clear</span>
+                                        <span class="bg-red-100 text-red-700 px-2 py-0.5 rounded text-xs">2</span>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg border-l-4 border-l-red-500 shadow-md ring-1 ring-red-500/20">
+                                        <div class="flex justify-between mb-2">
+                                            <span class="text-xs font-mono text-gray-500">#PJL-9721</span>
+                                            <span class="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[10px] font-bold uppercase tracking-wider italic">Critical</span>
+                                        </div>
+                                        <div class="font-bold text-sm mb-1 line-clamp-1">Doc Missing: Invoice #A2</div>
+                                        <div class="text-xs text-red-500 mb-4 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span> Action Required</div>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 text-[10px] font-bold py-1 bg-gray-100 hover:bg-gray-200 rounded">Notify Broker</button>
+                                            <button class="flex-1 text-[10px] font-bold py-1 bg-[#1E5A6B] text-white rounded">Resolved</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Column 3 -->
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between font-semibold border-b pb-2">
+                                        <span>In Transit</span>
+                                        <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">12</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if(id === 2) {
+                preview.innerHTML = `
+                    <div class="h-full min-h-[600px] bg-[#f0f9ff] flex flex-col">
+                        <!-- Top Header -->
+                        <div class="h-16 bg-white border-b px-8 flex items-center justify-between shrink-0">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-[#5BC0DE] rounded-xl flex items-center justify-center text-white font-bold italic shadow-lg shadow-[#5BC0DE]/30">PC</div>
+                                <div class="font-bold text-[#1E5A6B] tracking-tight">PJL CONNECT <span class="text-[#5BC0DE]">LOGISTICS</span></div>
+                            </div>
+                            <div class="flex gap-4 items-center">
+                                <div class="bg-slate-100 h-10 w-48 rounded-full"></div>
+                                <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
+                            </div>
+                        </div>
+                        <!-- Modern Cards -->
+                        <div class="p-8 flex-1">
+                            <div class="flex gap-4 mb-8">
+                                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col items-center">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active Shipments</span>
+                                    <span class="text-2xl font-bold text-[#1E5A6B]">42</span>
+                                </div>
+                                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col items-center border-b-4 border-b-red-400">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Exceptions</span>
+                                    <span class="text-2xl font-bold text-red-500">03</span>
+                                </div>
+                                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex-1 flex flex-col items-center border-b-4 border-b-green-400">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Completed (Today)</span>
+                                    <span class="text-2xl font-bold text-green-500">18</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-3xl p-6 shadow-xl shadow-blue-500/5 min-h-[400px]">
+                                <h3 class="font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                    <span class="w-2 h-6 bg-[#5BC0DE] rounded-full"></span> Live Shipment Tracker
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center gap-6 p-4 hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer group">
+                                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-[#5BC0DE]/10 transition-colors">
+                                            <span class="w-6 h-6 bg-[#5BC0DE] rounded-full"></span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="font-bold text-slate-700">#PJL-10254</div>
+                                            <div class="text-xs text-slate-400 font-medium">Electronics Batch A11 → Sihanouk Port</div>
+                                        </div>
+                                        <div class="w-48 bg-slate-100 h-2 rounded-full overflow-hidden shrink-0 hidden md:block">
+                                            <div class="w-2/3 h-full bg-[#5BC0DE]"></div>
+                                        </div>
+                                        <div class="px-4 py-1.5 bg-blue-50 text-[#5BC0DE] rounded-full text-xs font-bold">IN TRANSIT</div>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-6 p-4 hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer group">
+                                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center">
+                                            <span class="w-6 h-6 bg-red-400 rounded-full animate-ping"></span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="font-bold text-slate-700">#PJL-10259</div>
+                                            <div class="text-xs text-red-400 font-bold uppercase tracking-tighter">DELAYED: Customs Checkpoint</div>
+                                        </div>
+                                        <div class="w-48 bg-slate-100 h-2 rounded-full overflow-hidden shrink-0 hidden md:block">
+                                            <div class="w-1/4 h-full bg-red-400"></div>
+                                        </div>
+                                        <div class="px-4 py-1.5 bg-red-50 text-red-500 rounded-full text-xs font-bold ring-1 ring-red-100">URGENT</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if(id === 3) {
+                preview.innerHTML = `
+                    <div class="h-full min-h-[600px] bg-[#1a1a1a] flex">
+                        <!-- High Density Sidebar -->
+                        <div class="w-16 bg-[#0f0f0f] flex flex-col items-center py-6 gap-6 shrink-0 border-r border-white/5">
+                            <div class="w-10 h-10 border-2 border-[#5BC0DE] rounded flex items-center justify-center text-[#5BC0DE] font-bold text-xs">PJL</div>
+                            <div class="w-8 h-8 rounded bg-[#1E5A6B] flex items-center justify-center text-white text-[10px]">EX</div>
+                            <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-white/40 text-[10px]">SH</div>
+                            <div class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-white/40 text-[10px]">DR</div>
+                        </div>
+                        
+                        <div class="flex-1 flex flex-col p-4 gap-4 overflow-hidden">
+                            <!-- Alert bar -->
+                            <div class="bg-red-500/10 border border-red-500/20 p-3 rounded-lg flex items-center justify-between">
+                                <div class="text-red-400 text-xs font-bold flex items-center gap-2">
+                                    <span class="w-4 h-4 rounded-full bg-red-500 flex items-center justify-center text-[10px] text-white font-black animate-pulse">!</span>
+                                    SYSTEM ALERT: 2 SHIPMENTS HALTED AT BORDER CHECKPOINT
+                                </div>
+                                <button class="text-[10px] text-white/60 hover:text-white underline font-bold px-2 uppercase tracking-widest">Acknowledge All</button>
+                            </div>
+                            
+                            <!-- Large Focus Card -->
+                            <div class="flex-1 overflow-auto grid grid-cols-1 xl:grid-cols-2 gap-4">
+                                <div class="bg-[#1E5A6B]/20 border border-[#1E5A6B]/40 rounded-xl p-6 relative overflow-hidden group">
+                                    <div class="absolute top-0 right-0 p-4 opacity-50 font-black text-6xl text-white/5 -rotate-12 group-hover:scale-110 transition-transform">EXCEPTION</div>
+                                    <div class="relative">
+                                        <div class="flex items-center gap-2 text-[#5BC0DE] text-[10px] font-bold tracking-widest uppercase mb-2">Critical Resolution Flow</div>
+                                        <h4 class="text-white text-xl font-bold mb-4">Shipment #PJL-28340</h4>
+                                        
+                                        <div class="grid grid-cols-2 gap-6 mb-8 mt-4">
+                                            <div class="space-y-1">
+                                                <div class="text-white/40 text-[10px] uppercase font-bold tracking-widest">Issue Reported</div>
+                                                <div class="text-red-400 font-bold">Wrong Seal Number</div>
+                                            </div>
+                                            <div class="space-y-1">
+                                                <div class="text-white/40 text-[10px] uppercase font-bold tracking-widest">Location</div>
+                                                <div class="text-white font-medium">Bavet Border Gate</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-black/40 p-4 rounded-lg border border-white/10 mb-6 group-hover:border-[#5BC0DE]/50 transition-colors">
+                                            <div class="text-white/70 text-xs italic mb-4">"The seal detected by the inspector (ABC-123) does not match the manifest (XYZ-789). Driver is requesting immediate verification."</div>
+                                            <div class="flex gap-2">
+                                                <button class="bg-[#5BC0DE] hover:bg-[#4ab0ce] text-[#1E5A6B] font-bold px-4 py-2 rounded text-xs">APPROVE NEW SEAL</button>
+                                                <button class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2 rounded text-xs">REQUEST PHOTOS</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-[#2a2a2a] border border-white/5 rounded-xl p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="text-white/80 font-bold text-sm">Real-time Activity Feed</h4>
+                                        <span class="text-[10px] text-green-500 font-bold flex items-center gap-1">● LIVE</span>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <div class="flex gap-3 border-l-2 border-white/10 pl-4 py-1">
+                                            <div class="text-[10px] text-white/40 w-12 pt-0.5">07:32</div>
+                                            <div class="text-xs text-white/80">Driver <span class="text-[#5BC0DE]">Sophal</span> arrived at warehouse B</div>
+                                        </div>
+                                        <div class="flex gap-3 border-l-2 border-blue-500/50 pl-4 py-1">
+                                            <div class="text-[10px] text-white/40 w-12 pt-0.5">07:28</div>
+                                            <div class="text-xs text-white/80">Shipment <span class="text-[#5BC0DE]">#PJL-28351</span> cleared customs</div>
+                                        </div>
+                                        <div class="bg-red-500/5 -mx-6 px-10 py-3 flex gap-3 border-l-4 border-red-500">
+                                            <div class="text-[10px] text-red-500/60 w-12 pt-0.5">07:15</div>
+                                            <div class="text-xs text-red-400 font-bold italic">Exception triggered by carrier Telegram bot</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initial Selection
+        selectTheme(1);
+    </script>
+</body>
+</html>
