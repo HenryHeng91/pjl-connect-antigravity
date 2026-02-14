@@ -867,3 +867,211 @@ Only 3 components require light customization:
 - Color tokens defined for dark mode adaptation
 - User preference detection via `prefers-color-scheme`
 
+---
+
+## Appendix A: Component Inventory
+
+> Cross-reference this master list against your component library (e.g., Laravel Boost, TailAdmin) to confirm coverage before implementation.
+
+### Atomic / Base Components
+
+| # | Component | Blade Tag | Source | Notes |
+|---|-----------|-----------|--------|-------|
+| 1 | Button (Primary) | `<x-button variant="primary">` | TailAdmin | `bg-teal-700` solid |
+| 2 | Button (Secondary) | `<x-button variant="secondary">` | TailAdmin | Teal outline |
+| 3 | Button (Danger) | `<x-button variant="danger">` | TailAdmin | `bg-red-600` solid |
+| 4 | Button (Success) | `<x-button variant="success">` | TailAdmin | `bg-green-600` solid |
+| 5 | Button (Ghost) | `<x-button variant="ghost">` | TailAdmin | Text-only |
+| 6 | Badge / Pill | `<x-badge>` | TailAdmin | Severity colors |
+| 7 | Status Pill | `<x-status-pill>` | Custom | Color-coded shipment state |
+| 8 | Input (Text) | `<x-input>` | TailAdmin | With validation states |
+| 9 | Select / Dropdown | `<x-select>` | TailAdmin | Alpine.js interaction |
+| 10 | Checkbox / Toggle | `<x-checkbox>` | TailAdmin | — |
+| 11 | Textarea | `<x-textarea>` | TailAdmin | — |
+| 12 | Tooltip | `<x-tooltip>` | TailAdmin / Alpine | Hover + tap-to-reveal on mobile |
+| 13 | Avatar | `<x-avatar>` | TailAdmin | User/driver initials |
+| 14 | Icon | `<x-icon>` | Heroicons | Via Blade Heroicons package |
+| 15 | Progress Ring | `<x-progress-ring>` | Custom CSS | SVG-based completion indicator |
+
+### Feedback Components
+
+| # | Component | Blade Tag | Source | Notes |
+|---|-----------|-----------|--------|-------|
+| 16 | Toast Notification | `<x-toast>` | Alpine.js | Max 3 stacked, top-right |
+| 17 | Inline Banner | `<x-banner>` | TailAdmin | Warning/info above content |
+| 18 | Skeleton Loader | `<x-skeleton>` | TailAdmin | Page-load placeholder |
+| 19 | Button Spinner | (inline) | Tailwind animate-spin | Inside button on submit |
+| 20 | Empty State | `<x-empty-state>` | Custom | Illustration + message + CTA |
+| 21 | Error State | `<x-error-state>` | Custom | Error illustration + retry CTA |
+
+### Layout Components
+
+| # | Component | Blade Tag | Source | Notes |
+|---|-----------|-----------|--------|-------|
+| 22 | App Layout | `<x-layouts.app>` | Custom | Sidebar + header + main |
+| 23 | Auth Layout | `<x-layouts.auth>` | TailAdmin | Login/register |
+| 24 | Dashboard Layout | `<x-layouts.dashboard>` | Custom | Widget grid |
+| 25 | Sidebar | `<x-sidebar>` | TailAdmin | Collapsible, icons + text |
+| 26 | Header | `<x-header>` | TailAdmin | Breadcrumbs + user menu |
+| 27 | Footer | `<x-footer>` | TailAdmin | — |
+| 28 | Breadcrumb | `<x-breadcrumb>` | TailAdmin | `Dashboard > Jobs > #PJL-0001` |
+
+### Data Display Components
+
+| # | Component | Blade Tag | Source | Notes |
+|---|-----------|-----------|--------|-------|
+| 29 | Data Table | `<livewire:data-table>` | TailAdmin + Livewire | Sortable, filterable |
+| 30 | Card | `<x-card>` | TailAdmin | Generic content wrapper |
+| 31 | Stat Widget | `<x-stat-widget>` | TailAdmin | Number + sparkline |
+| 32 | Chart (ApexCharts) | `<livewire:apex-chart>` | ApexCharts | Volume, margin trends |
+| 33 | Tabs | `<x-tabs>` | TailAdmin | Horizontal, scroll on mobile |
+| 34 | Timeline | `<x-timeline>` | TailAdmin | Shipment event history |
+
+### Domain-Specific Components
+
+| # | Component | Blade Tag | Source | Notes |
+|---|-----------|-----------|--------|-------|
+| 35 | Kanban Board | `<livewire:kanban-board>` | Filament Kanban | Drag-drop columns |
+| 36 | Kanban Column | `<x-kanban-column>` | Filament Kanban | Stage header + count |
+| 37 | Job Card (Kanban) | `<x-job-card>` | Custom | Shipment summary in Kanban |
+| 38 | Exception Card | `<x-exception-card>` | Custom | Red bar + AI suggestion + actions |
+| 39 | Status Sync Badge | `<x-status-sync-badge>` | Custom | Job↔Booking relationship |
+| 40 | Copy-Paste Magic Block | `<x-copy-block>` | Custom | ASYCUDA pre-formatted + copy btn |
+| 41 | GPS Map | `<livewire:gps-map>` | Leaflet.js | Driver tracking + geofences |
+| 42 | Shipment Receipt Card (Telegram) | N/A (Telegram API) | Custom | Visual card in bot messages |
+| 43 | Slide-Over Panel | `<x-slide-over>` | TailAdmin / Alpine | Job detail, 40%–100% width |
+| 44 | Modal (Confirmation) | `<x-modal>` | TailAdmin / Alpine | Danger action confirm |
+| 45 | Invoice Viewer | `<x-invoice-viewer>` | PDF.js | In-browser PDF preview |
+
+**Total: 45 unique components** (27 from TailAdmin/libraries, 11 custom, 7 Livewire-driven)
+
+---
+
+## Appendix B: State Logic Matrix
+
+> Every main screen must define four states: **Empty**, **Loading**, **Error**, and **Success**. This matrix ensures no state is left undefined.
+
+### Back-Office Screens
+
+| Screen | Empty State | Loading State | Error State | Success State |
+|--------|-------------|---------------|-------------|---------------|
+| **OPS Dashboard** | "✨ All clear! No exceptions to handle." — No CTA needed | Skeleton grid for stat widgets + Kanban placeholder columns | "⚠️ Dashboard data unavailable. Retrying…" + auto-retry 5s | Live Kanban + stat widgets populated, green header pulse on fresh data |
+| **Job Kanban Board** | "No jobs yet. Create your first booking!" → Link to `/bookings/create` | Skeleton columns with ghost cards (3 per column) | "❌ Failed to load jobs. [Retry]" toast + stale data shown if cached | Cards populate with optimistic real-time updates; column counts update live |
+| **Job Detail (Slide-Over)** | N/A (always opened from a job) | Spinner in slide-over body, header loads first | "Could not load job details. [Retry] [Close]" inline error | Full detail with tabs: Documents / Tracking / Compliance / Financials / History |
+| **Booking List** | "No bookings found. [Create Booking]" centered illustration | Skeleton table rows (8 rows) | "Failed to fetch bookings. [Retry]" banner above table | Populated table with filters, sort indicators, row-click to detail |
+| **Booking Detail** | N/A (always opened from list) | Skeleton form fields | "Error loading booking. [Retry]" | Form populated, inline edit enabled |
+| **Exception Terminal** | "✨ Zero exceptions — system running smoothly!" with confetti micro-animation | Skeleton exception cards (3 stacked) | "Exception feed unavailable. [Retry]" | Exception cards sorted by severity, pulsing critical badges |
+| **Carrier Assignment Modal** | "No carriers available for this route." | Spinner inside modal body | "Carrier lookup failed. [Retry]" | Carrier list with rates, click-to-assign |
+| **Invoice List** | "No invoices generated yet." | Skeleton table | "Invoice data unavailable. [Retry]" | Table with status pills (Draft/Sent/Paid) |
+| **ASYCUDA Copy-Paste View** | "No shipment selected for customs." | Spinner while generating blocks | "Failed to generate ASYCUDA data. [Retry]" | Pre-formatted blocks with copy buttons, success toast on copy |
+| **GPS Tracking Map** | "No active drivers on map." (empty map with region outline) | Map tiles load + spinner overlay | "Map data unavailable. Check connection." | Live dots on Cambodia map, click for driver card |
+| **Management Dashboard** | "Insufficient data for reports. Check back after first month." | Skeleton chart placeholders | "Analytics unavailable. [Retry]" | Charts populated (ApexCharts), KPI cards with trends |
+| **Settings / Admin** | Default settings pre-populated | Standard page load | Form validation errors inline (red borders) | "✅ Settings saved" toast |
+| **Login / Auth** | N/A (form always present) | Button spinner on submit | "Invalid credentials. [Forgot Password?]" inline | Redirect to dashboard |
+
+### Telegram Bot Screens
+
+| Bot / Flow | Empty State | Loading State | Error State | Success State |
+|-----------|-------------|---------------|-------------|---------------|
+| **Customer Bot – Shipment Update** | "No active shipments found." | "⏳ Looking up your shipment…" text message | "❌ Could not retrieve status. Please try again." + retry button | Visual receipt card with status, location, next milestone |
+| **Driver Bot – Job Assignment** | "No jobs assigned to you right now." | "⏳ Loading your jobs…" | "⚠️ Error loading jobs. Tap to retry." | Job list with inline accept/decline buttons |
+| **Driver Bot – GPS Ping** | N/A (triggered by system) | "📍 Sending location…" | "❌ GPS failed. [Send manually] [Retry]" | "✅ Location received!" confirmation |
+| **Carrier Bot – Job Offer** | "No available jobs in your region." | "⏳ Checking available loads…" | "⚠️ Job list unavailable. Try again." | Job cards with Accept/Decline/Details buttons |
+
+---
+
+## Appendix C: Design Language Prompt Block
+
+> Use this block as a self-contained prompt when generating UI mockups, screenshots, or design assets with AI image tools.
+
+```
+DESIGN LANGUAGE: PJL Connect Logistics System
+
+COLORS:
+  Primary:      #1E5A6B (Deep Teal) — headers, sidebar, primary buttons
+  Accent:       #5BC0DE (Sky Blue) — links, highlights, accent elements
+  Success:      #22C55E (green-500) — resolved, confirmed, positive
+  Warning:      #EAB308 (yellow-500) — delayed, needs attention
+  Danger:       #EF4444 (red-500) — critical exceptions, errors, destructive
+  Background:   #FFFFFF (white) — main content area
+  Surface:      #F9FAFB (gray-50) — card backgrounds, alternating rows
+  Border:       #E5E7EB (gray-200) — dividers, card borders
+  Text Primary: #111827 (gray-900) — headings, body
+  Text Muted:   #6B7280 (gray-500) — captions, metadata
+
+TYPOGRAPHY:
+  Font Family:  "Inter", system-ui, sans-serif
+  Monospace:    "JetBrains Mono", ui-monospace, monospace (shipment IDs, codes)
+  H1:           2rem / Bold
+  H2:           1.5rem / Semibold
+  H3:           1.25rem / Medium
+  Body:         1rem / Regular
+  Small/Meta:   0.875rem / Regular
+
+BORDER RADIUS:
+  Data views (Jobs, Tables):  rounded-lg (0.5rem) — sharp, professional
+  Dashboard widgets:          rounded-2xl (1rem) — softer, modern SaaS feel
+  Buttons:                    rounded-lg (0.5rem)
+  Badges/Pills:               rounded-full (9999px)
+  Modals/Cards:               rounded-xl (0.75rem)
+
+SHADOWS:
+  Cards:        shadow-sm (0 1px 2px rgba(0,0,0,0.05))
+  Dashboard:    shadow-md (0 4px 6px rgba(0,0,0,0.1))
+  Modals:       shadow-xl (0 20px 25px rgba(0,0,0,0.1))
+
+SPACING:
+  Base unit:    8px
+  Card padding: 16px (p-4)
+  Section gap:  24px (space-y-6)
+  Page margin:  32px (p-8)
+
+VISUAL STYLE:
+  - Light mode only (MVP), clean white backgrounds
+  - Hybrid approach: sharp boundaries for data views, soft edges for dashboards
+  - Exception-first: calm default state, red/yellow for problems
+  - Status pills are rounded-full with semantic colors
+  - Left-colored-border accent on exception cards (border-l-4)
+  - Pulsing animation on critical badges (animate-pulse)
+  - Optimistic UI updates on Kanban drag
+  - Sidebar: Deep Teal background, white text, collapsible
+```
+
+---
+
+## Appendix D: Laravel Alignment Audit
+
+> Identifies potential conflicts between design specs and standard Laravel 11 / Blade / Tailwind conventions.
+
+### ✅ Fully Aligned
+
+| Design Decision | Laravel Convention | Status |
+|-----------------|-------------------|--------|
+| Blade Components (`<x-button>`, `<x-card>`) | Native Blade component system | ✅ Perfect fit |
+| Tailwind CSS utility classes | Ships with Laravel 11 | ✅ Native |
+| Alpine.js for micro-interactions | Ships with Laravel 11 (via Vite) | ✅ Native |
+| Livewire for real-time components | First-party Laravel package | ✅ Native |
+| `resources/views/components/` structure | Standard Blade component path | ✅ Convention match |
+| `layouts/app.blade.php` pattern | Standard Laravel layout | ✅ Convention match |
+| Form validation (server-side + inline) | Laravel validation + `@error` directive | ✅ Native |
+| CSRF protection on forms | `@csrf` directive | ✅ Built-in |
+| Route-based breadcrumbs | Laravel Breadcrumbs package | ✅ Ecosystem package |
+
+### ⚠️ Needs Attention
+
+| Design Decision | Potential Conflict | Mitigation |
+|-----------------|-------------------|------------|
+| **TailAdmin template** | TailAdmin Laravel edition is a starter template, not a Composer package. It is installed by cloning/copying, not `composer require`. Ensure it is integrated during project scaffolding, not post-install. | Clone TailAdmin repo first, then build PJL Connect on top of it. Do NOT try to add it to an existing Laravel project later. |
+| **Filament Kanban** | Filament packages expect the Filament admin panel to be installed. Using Filament Kanban outside of Filament admin requires verifying standalone compatibility. | Confirm `mokhosh/filament-kanban` works standalone, or use `livewire-sortable` as fallback for drag-drop. |
+| **Optimistic UI on Kanban drag** | Livewire is server-driven by default. Optimistic updates require Alpine.js to move the card visually first, then Livewire confirms server-side. Rollback logic must be explicit. | Use `wire:sortable` + Alpine `x-on:sortable-end` to update DOM immediately. Livewire dispatches rollback event on failure. |
+| **Inline editing (click-to-edit)** | Not a native Blade pattern. Requires Alpine.js `x-show`/`x-ref` toggling between display and input states. | Create a reusable `<x-inline-edit>` Blade component wrapping the Alpine toggle pattern. |
+| **Toast notification stacking (max 3)** | No built-in Laravel toast system. Requires custom Alpine.js store or a package like `tall-toasts`. | Use `wire:emit` to push toasts to an Alpine `$store.toasts` array. Render via `<x-toast-container>` in layout. |
+| **Keyboard shortcuts** | Not a Blade/Livewire feature. Requires a JS layer (e.g., `hotkeys.js` or Alpine plugin). | Add `@hotkey` Alpine directive or load `hotkeys-js` via Vite. Keep shortcut count minimal (5 for MVP). |
+
+### ❌ Conflicts to Resolve Before Implementation
+
+| Design Decision | Conflict | Resolution |
+|-----------------|----------|------------|
+| **Dark mode via `dark:` variants** | Spec says "Light mode only for MVP" but mentions `dark:` in Styling Rules. If dark-mode classes ship unused, they bloat CSS. | Set `darkMode: 'class'` in `tailwind.config.js` but do NOT add dark-mode markup in MVP. Tailwind will tree-shake unused dark classes. No conflict if handled correctly. |
+| **`ux-color-themes.html` deliverable** | File referenced in spec but NOT found on disk (only `ux-design-directions.html` exists). | Either generate the missing file or remove the reference from the spec. Non-blocking for development. |
+

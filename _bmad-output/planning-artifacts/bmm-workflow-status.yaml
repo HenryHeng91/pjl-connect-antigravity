@@ -35,9 +35,11 @@ workflow_status:
         output: "_bmad-output/planning-artifacts/prd.md"
         completed_at: "2026-01-31T16:56:47+07:00"
       - id: "create-ux-design"
-        status: "required"
+        status: "completed"
         agent: "ux-designer"
         command: "/bmad:bmm:workflows:create-ux-design"
+        output: "_bmad-output/planning-artifacts/ux-design-specification.md"
+        completed_at: "2026-02-14T06:09:03+07:00"
 
   - phase: 3
     name: "Solutioning"
