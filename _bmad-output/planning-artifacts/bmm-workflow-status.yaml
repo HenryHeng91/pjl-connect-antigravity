@@ -45,9 +45,11 @@ workflow_status:
     name: "Solutioning"
     workflows:
       - id: "create-architecture"
-        status: "required"
+        status: "completed"
         agent: "architect"
         command: "/bmad:bmm:workflows:create-architecture"
+        output: "_bmad-output/planning-artifacts/architecture.md"
+        completed_at: "2026-02-20T22:18:51+07:00"
       - id: "create-epics-and-stories"
         status: "required"
         agent: "pm"
