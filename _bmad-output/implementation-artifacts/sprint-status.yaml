@@ -44,7 +44,7 @@ development_status:
   # EPIC 0: Project Foundation & Environment Setup (6 stories)
   # ============================================================
   epic-0: in-progress
-  0-1-install-laravel-boost-and-initialize-mcp-server: ready-for-dev
+  0-1-install-laravel-boost-and-initialize-mcp-server: review
   0-2-laravel-12-scaffolding-with-tailadmin-integration: backlog
   0-3-database-foundation-and-user-authentication: backlog
   0-4-rbac-authorization-middleware: backlog

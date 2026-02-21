@@ -1,6 +1,6 @@
 # Story 0.1: Install Laravel Boost and Initialize MCP Server
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -24,37 +24,37 @@ So that all AI coding agents can connect and follow Boost guidelines from Day 1.
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Create Fresh Laravel 12 Project** (AC: #1)
-  - [ ] Run `composer create-project laravel/laravel pjl-connect`
-  - [ ] Verify PHP 8.2+ is active (`php -v`)
-  - [ ] Verify Laravel 12.x installed (`php artisan --version`)
-  - [ ] Configure `.env` with local database settings (MySQL 8.0+, `utf8mb4` charset)
-  - [ ] Run `php artisan key:generate`
+- [x] **Task 1: Create Fresh Laravel 12 Project** (AC: #1)
+  - [x] Run `composer create-project laravel/laravel pjl-connect`
+  - [x] Verify PHP 8.2+ is active (`php -v`)
+  - [x] Verify Laravel 12.x installed (`php artisan --version`)
+  - [x] Configure `.env` with local database settings (MySQL 8.0+, `utf8mb4` charset)
+  - [x] Run `php artisan key:generate`
 
-- [ ] **Task 2: Install Laravel Boost** (AC: #1, #2)
-  - [ ] Run `composer require laravel/boost --dev` (target version 2.1+)
-  - [ ] Run `php artisan boost:install`
-  - [ ] Verify Boost publishes its configuration and assets
-  - [ ] Run `php artisan boost:skills` — confirm output lists available skills
-  - [ ] Verify no Composer dependency conflicts
+- [x] **Task 2: Install Laravel Boost** (AC: #1, #2)
+  - [x] Run `composer require laravel/boost --dev` (target version 2.1+)
+  - [x] Run `php artisan boost:install`
+  - [x] Verify Boost publishes its configuration and assets
+  - [x] Run `php artisan boost:skills` — confirm output lists available skills
+  - [x] Verify no Composer dependency conflicts
 
-- [ ] **Task 3: Configure and Verify MCP Server** (AC: #3)
-  - [ ] Verify MCP server configuration is present (check `config/boost.php` or equivalent)
-  - [ ] Confirm MCP server responds to connections
-  - [ ] Document MCP server URL/port for other agent configurations
-  - [ ] Verify AI agents can query application structure via Boost tools
+- [x] **Task 3: Configure and Verify MCP Server** (AC: #3)
+  - [x] Verify MCP server configuration is present (check `config/boost.php` or equivalent)
+  - [x] Confirm MCP server responds to connections
+  - [x] Document MCP server URL/port for other agent configurations
+  - [x] Verify AI agents can query application structure via Boost tools
 
-- [ ] **Task 4: Initialize Git Repository and Base Configuration** (AC: all)
-  - [ ] `git init` + initial commit with clean Laravel 12 + Boost
-  - [ ] Create `.env.example` with all required env vars documented
-  - [ ] Create `.env.testing` for CI pipeline (Story 0.6 will use this)
-  - [ ] Ensure `.gitignore` includes standard Laravel exclusions + IDE files
+- [x] **Task 4: Initialize Git Repository and Base Configuration** (AC: all)
+  - [x] `git init` + initial commit with clean Laravel 12 + Boost
+  - [x] Create `.env.example` with all required env vars documented
+  - [x] Create `.env.testing` for CI pipeline (Story 0.6 will use this)
+  - [x] Ensure `.gitignore` includes standard Laravel exclusions + IDE files
 
-- [ ] **Task 5: Write Verification Tests** (AC: #1, #2, #3)
-  - [ ] Create `tests/Feature/BoostInstallationTest.php` using Pest
-  - [ ] Test: Boost service provider is registered
-  - [ ] Test: `boost:skills` artisan command exists and returns 0 exit code
-  - [ ] Test: Application boots without errors after Boost install
+- [x] **Task 5: Write Verification Tests** (AC: #1, #2, #3)
+  - [x] Create `tests/Feature/BoostInstallationTest.php` using Pest
+  - [x] Test: Boost service provider is registered
+  - [x] Test: `boost:skills` artisan command exists and returns 0 exit code
+  - [x] Test: Application boots without errors after Boost install
 
 ## Dev Notes
 
@@ -124,16 +124,21 @@ pjl-connect/
 - **What to test:**
   - Boost service provider is registered in the application
   - `boost:skills` artisan command exists and returns exit code 0
-  - Application boots cleanly (no service provider errors or dependency conflicts)
-- **What NOT to test:** No business logic, no auth, no database — those are for later stories
-- **Run tests:** `./vendor/bin/pest`
+-   **Framework:** Pest (Laravel 12 default)
+-   **Test location:** `tests/Feature/BoostInstallationTest.php`
+-   **What to test:**
+    -   Boost service provider is registered in the application
+    -   `boost:skills` artisan command exists and returns exit code 0
+    -   Application boots cleanly (no service provider errors or dependency conflicts)
+-   **What NOT to test:** No business logic, no auth, no database — those are for later stories
+-   **Run tests:** `./vendor/bin/pest`
 
 ### Definition of Done
 
-- [ ] Feature works: Boost installed, MCP server accessible
-- [ ] Tests pass: `./vendor/bin/pest` returns green for all verification tests
-- [ ] Contextual logging: N/A (first task — no business logic yet)
-- [ ] Git: Clean initial commit with Laravel 12 + Boost
+- [x] Feature works: Boost installed, MCP server accessible
+- [x] Tests pass: `php artisan test` returns green for all verification tests
+- [x] Contextual logging: N/A (first task — no business logic yet)
+- [x] Git: Clean initial commit with Laravel 12 + Boost
 
 ### Anti-Pattern Prevention
 
