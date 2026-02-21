@@ -1,0 +1,152 @@
+# generated: 2026-02-21T16:13:23+07:00
+# project: PJL Connect
+# project_key: pjl-connect
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: "2026-02-21T16:13:23+07:00"
+project: "PJL Connect"
+project_key: "pjl-connect"
+tracking_system: "file-system"
+story_location: "_bmad-output/implementation-artifacts"
+
+development_status:
+  # ============================================================
+  # EPIC 0: Project Foundation & Environment Setup (6 stories)
+  # ============================================================
+  epic-0: in-progress
+  0-1-install-laravel-boost-and-initialize-mcp-server: ready-for-dev
+  0-2-laravel-12-scaffolding-with-tailadmin-integration: backlog
+  0-3-database-foundation-and-user-authentication: backlog
+  0-4-rbac-authorization-middleware: backlog
+  0-5-day-2-operations-infrastructure: backlog
+  0-6-ci-cd-pipeline-setup: backlog
+  epic-0-retrospective: optional
+
+  # ============================================================
+  # EPIC 1: Customer Registration & Profile Management (2 stories)
+  # ============================================================
+  epic-1: backlog
+  1-1-customer-registration-via-telegram-start-command: backlog
+  1-2-customer-profile-management-in-back-office: backlog
+  epic-1-retrospective: optional
+
+  # ============================================================
+  # EPIC 2: Booking & Document Intake (7 stories)
+  # ============================================================
+  epic-2: backlog
+  2-1-booking-creation-via-telegram-new-command: backlog
+  2-2-document-upload-and-ocr-processing-pipeline: backlog
+  2-3-ocr-confidence-routing-and-customer-data-confirmation: backlog
+  2-4-visual-receipt-card-generation: backlog
+  2-5-booking-list-and-filtering-in-back-office: backlog
+  2-6-ops-manual-booking-creation: backlog
+  2-7-document-attachment-to-bookings-and-jobs: backlog
+  epic-2-retrospective: optional
+
+  # ============================================================
+  # EPIC 3: Job Management & OPS Command Center (8 stories)
+  # ============================================================
+  epic-3: backlog
+  3-1-booking-to-job-conversion-and-reference-numbers: backlog
+  3-2-job-kanban-board: backlog
+  3-3-carrier-assignment-to-jobs: backlog
+  3-4-job-status-management-and-manual-override: backlog
+  3-5-job-comments-and-notes: backlog
+  3-6-ops-assignment-auto-and-manual: backlog
+  3-7-document-print-preview-and-annotation: backlog
+  3-8-booking-summary-cover-page-print: backlog
+  epic-3-retrospective: optional
+
+  # ============================================================
+  # EPIC 4: Carrier & Driver Operations (5 stories)
+  # ============================================================
+  epic-4: backlog
+  4-1-carrier-registration-and-telegram-bot-setup: backlog
+  4-2-job-notification-and-accept-decline-via-carrier-bot: backlog
+  4-3-nag-bot-and-ops-escalation: backlog
+  4-4-driver-telegram-bot-and-live-location-sharing: backlog
+  4-5-real-time-driver-map-view: backlog
+  epic-4-retrospective: optional
+
+  # ============================================================
+  # EPIC 5: Tracking & Live Monitoring (5 stories)
+  # ============================================================
+  epic-5: backlog
+  5-1-customer-shipment-tracking-via-track-command: backlog
+  5-2-gps-blackout-detection-and-silence-escalation: backlog
+  5-3-manual-vessel-and-flight-tracking-entry: backlog
+  5-4-eta-calculation: backlog
+  5-5-geofence-management-and-auto-trigger-events: backlog
+  epic-5-retrospective: optional
+
+  # ============================================================
+  # EPIC 6: Document & Customs Compliance (4 stories)
+  # ============================================================
+  epic-6: backlog
+  6-1-job-document-viewer: backlog
+  6-2-asycuda-copy-paste-magic: backlog
+  6-3-sad-review-workbench: backlog
+  6-4-document-deadline-tracking-and-customer-reminders: backlog
+  epic-6-retrospective: optional
+
+  # ============================================================
+  # EPIC 7: Financial & Reporting (5 stories)
+  # ============================================================
+  epic-7: backlog
+  7-1-invoice-generation: backlog
+  7-2-quickbooks-export: backlog
+  7-3-management-dashboard-and-kpis: backlog
+  7-4-profit-per-booking-calculation: backlog
+  7-5-job-history-and-audit-trail-viewer: backlog
+  epic-7-retrospective: optional
+
+  # ============================================================
+  # EPIC 8: Administration & System Configuration (5 stories)
+  # ============================================================
+  epic-8: backlog
+  8-1-user-account-management: backlog
+  8-2-rbac-role-assignment: backlog
+  8-3-rate-card-configuration: backlog
+  8-4-carrier-database-management: backlog
+  8-5-system-settings-configuration: backlog
+  epic-8-retrospective: optional
+
+  # ============================================================
+  # EPIC 9: Cross-Cutting Quality & Observability (4 stories)
+  # ============================================================
+  epic-9: backlog
+  9-1-audit-trail-service-and-audit-logs: backlog
+  9-2-event-listener-integration-testing: backlog
+  9-3-performance-validation-against-nfr-thresholds: backlog
+  9-4-exception-handler-and-error-state-verification: backlog
+  epic-9-retrospective: optional

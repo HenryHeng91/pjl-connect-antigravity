@@ -2,7 +2,7 @@
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 inputDocuments: ['_bmad-output/planning-artifacts/product-brief-PJL-Connect-2026-01-24.md', '_bmad-output/planning-artifacts/prd.md']
 brandAssets: ['logos/pjl-logo-vertical.jpg', 'logos/pjl-logo-horizontal.png']
-framework: 'Laravel 11'
+framework: 'Laravel 12'
 componentAnnotation: true
 lastStep: 14
 ---
@@ -11,7 +11,7 @@ lastStep: 14
 
 **Author:** Siekhai  
 **Date:** 2026-01-31  
-**Framework:** Laravel 11 (Blade Components + Livewire)
+**Framework:** Laravel 12 (Blade Components + Livewire)
 
 ---
 
@@ -24,7 +24,7 @@ PJL Connect is an **"Invisible App" Multi-Modal Logistics Operating System** tha
 **Core Philosophy:** Automate 99% of "happy path" operations so humans only handle the 1% of exceptions.
 
 **Hybrid Architecture:**
-- **Web Back-Office** (Laravel 11 + Livewire) → OPS, Broker, Accounting, Management
+- **Web Back-Office** (Laravel 12 + Livewire) → OPS, Broker, Accounting, Management
 - **Telegram Bots** → Customer, Driver, Carrier, OPS Internal
 
 ### Target Users
@@ -1073,5 +1073,5 @@ VISUAL STYLE:
 | Design Decision | Conflict | Resolution |
 |-----------------|----------|------------|
 | **Dark mode via `dark:` variants** | Spec says "Light mode only for MVP" but mentions `dark:` in Styling Rules. If dark-mode classes ship unused, they bloat CSS. | Set `darkMode: 'class'` in `tailwind.config.js` but do NOT add dark-mode markup in MVP. Tailwind will tree-shake unused dark classes. No conflict if handled correctly. |
-| **`ux-color-themes.html` deliverable** | File referenced in spec but NOT found on disk (only `ux-design-directions.html` exists). | Either generate the missing file or remove the reference from the spec. Non-blocking for development. |
+| **`ux-color-themes.html` deliverable** | File was not generated during UX design workflow. Only `ux-design-directions.html` exists on disk. | Non-blocking — color theme decisions are fully captured in Appendix C (Design Language Prompt Block) above. No separate file needed. |
 

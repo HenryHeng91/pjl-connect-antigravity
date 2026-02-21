@@ -1,0 +1,585 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "OPS Dashboard",
+      "clip": true,
+      "width": 1440,
+      "height": 1024,
+      "fill": "#F8FAFC",
+      "children": [
+        {
+          "type": "frame",
+          "id": "jZwOO",
+          "name": "Sidebar",
+          "width": 280,
+          "height": "fill_container",
+          "fill": "#1E5A6B",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "XKN1S",
+              "name": "logoText",
+              "fill": "#FFFFFF",
+              "content": "PJL Connect",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "m17Pq",
+              "name": "navMenu",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2AN14",
+                  "name": "navItem1",
+                  "width": "fill_container",
+                  "fill": "#5BC0DE",
+                  "cornerRadius": 8,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NNS9U",
+                      "name": "navItem1Text",
+                      "fill": "#FFFFFF",
+                      "content": "Dashboard",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fVypS",
+                  "name": "navItem2",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "55e9y",
+                      "name": "navItem2Text",
+                      "fill": "#CBD5E1",
+                      "content": "Active Jobs",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "B92w7",
+          "name": "Main Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": 32,
+          "children": [
+            {
+              "type": "frame",
+              "id": "dVe5T",
+              "name": "header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JzfBA",
+                  "name": "title",
+                  "fill": "#0F172A",
+                  "content": "OPS Command Center",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "8WD0T",
+                  "name": "userProfile",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "361yq",
+                      "name": "avatar",
+                      "fill": "#E2E8F0",
+                      "width": 40,
+                      "height": 40
+                    },
+                    {
+                      "type": "text",
+                      "id": "N6gl9",
+                      "name": "userName",
+                      "fill": "#0F172A",
+                      "content": "OPS Dara",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "izZpH",
+              "name": "exceptionSection",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "0K9yZ",
+                  "name": "exceptionTitle",
+                  "fill": "#0F172A",
+                  "content": "Priority Exceptions (1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "NZOC0",
+                  "name": "exceptionCard",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": {
+                      "top": 1,
+                      "right": 1,
+                      "bottom": 1,
+                      "left": 4
+                    },
+                    "fill": "#EF4444"
+                  },
+                  "gap": 16,
+                  "padding": 20,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ymS2I",
+                      "name": "exInfo",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7c61S",
+                          "name": "exTitle",
+                          "fill": "#0F172A",
+                          "content": "🚨 Driver Silence Escalation: Booking #PJL-0042",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UtdsQ",
+                          "name": "exDesc",
+                          "fill": "#64748B",
+                          "content": "No GPS ping from Driver Sokha for 45 mins. Suggested Action: Manual Override or ping Nag-Bot.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tGThy",
+                      "name": "exActions",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "yBwpR",
+                          "name": "exBtn1",
+                          "cornerRadius": 6,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "m2vjV",
+                              "name": "exBtn1Text",
+                              "fill": "#0F172A",
+                              "content": "Ping Driver",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5AfvK",
+                          "name": "exBtn2",
+                          "fill": "#1E5A6B",
+                          "cornerRadius": 6,
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xP5cR",
+                              "name": "exBtn2Text",
+                              "fill": "#FFFFFF",
+                              "content": "Manual Override",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zfkKB",
+              "name": "kanbanSection",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dhC0v",
+                  "name": "kanbanHeader",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qcOf0",
+                      "name": "kanbanTitle",
+                      "fill": "#0F172A",
+                      "content": "Job Board",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KV22V",
+                  "name": "kanbanBoard",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "2zxGM",
+                      "name": "colNew",
+                      "width": "fill_container",
+                      "fill": "#F1F5F9",
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "cmOOO",
+                          "name": "colNewTitle",
+                          "fill": "#475569",
+                          "content": "New (1)",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "LCvvB",
+                          "name": "card1",
+                          "width": "fill_container",
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "jYTQt",
+                              "name": "card1Header",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "yTqCf",
+                                  "name": "card1Id",
+                                  "fill": "#1E5A6B",
+                                  "content": "#PJL-0043",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "nLwMM",
+                                  "name": "card1Status",
+                                  "fill": "#E0F2FE",
+                                  "cornerRadius": 100,
+                                  "padding": [
+                                    4,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "F9Mz7",
+                                      "name": "card1StatusText",
+                                      "fill": "#0369A1",
+                                      "content": "Unassigned",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 10,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "kARNQ",
+                              "name": "card1Customer",
+                              "fill": "#0F172A",
+                              "content": "Garment Factory Co.",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "qF6mi",
+                              "name": "card1Details",
+                              "fill": "#64748B",
+                              "content": "5x 20ft | Sihanoukville -> PP",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZTFUK",
+                      "name": "colTransit",
+                      "width": "fill_container",
+                      "fill": "#F1F5F9",
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "8vAlC",
+                          "name": "colTransitTitle",
+                          "fill": "#475569",
+                          "content": "In Transit (1)",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DVv3F",
+                          "name": "card2",
+                          "width": "fill_container",
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 8,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#E2E8F0"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zmCeO",
+                              "name": "card2Header",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "9b6wk",
+                                  "name": "card2Id",
+                                  "fill": "#1E5A6B",
+                                  "content": "#PJL-0041",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "FWVzA",
+                                  "name": "card2Status",
+                                  "fill": "#DCFCE7",
+                                  "cornerRadius": 100,
+                                  "padding": [
+                                    4,
+                                    8
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "bm0ZW",
+                                      "name": "card2StatusText",
+                                      "fill": "#166534",
+                                      "content": "Moving",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 10,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "ae2Vc",
+                              "name": "card2Customer",
+                              "fill": "#0F172A",
+                              "content": "Tech Imports Ltd.",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "pdreH",
+                              "name": "card2Details",
+                              "fill": "#64748B",
+                              "content": "1x 40ft | PP -> BTB",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NJStQ",
+                      "name": "colCustoms",
+                      "width": "fill_container",
+                      "fill": "#F1F5F9",
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Db2Q2",
+                          "name": "colCustomsTitle",
+                          "fill": "#475569",
+                          "content": "Customs (0)",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fX2qj",
+                      "name": "colDelivered",
+                      "width": "fill_container",
+                      "fill": "#F1F5F9",
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "T0tSR",
+                          "name": "colDeliveredTitle",
+                          "fill": "#475569",
+                          "content": "Delivered (0)",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
