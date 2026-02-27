@@ -45,8 +45,8 @@ development_status:
   # ============================================================
   epic-0: in-progress
   0-1-install-laravel-boost-and-initialize-mcp-server: done
-  0-2-laravel-12-scaffolding-with-tailadmin-integration: backlog
-  0-3-database-foundation-and-user-authentication: backlog
+  0-2-laravel-12-scaffolding-with-tailadmin-integration: done
+  0-3-database-foundation-and-user-authentication: in-progress
   0-4-rbac-authorization-middleware: backlog
   0-5-day-2-operations-infrastructure: backlog
   0-6-ci-cd-pipeline-setup: backlog
